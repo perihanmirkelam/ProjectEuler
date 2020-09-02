@@ -1,6 +1,9 @@
+import kotlin.math.sqrt
+
 fun main(args: Array<String>) {
     q1()
     q2()
+    q3()
 }
 
 /**
@@ -37,4 +40,24 @@ fun q2(limit: Int = 4_000_000){
         f1 = f2
     }
     println("A2: $sum")
+}
+
+/**
+ * Q3-Largest prime factor
+ * The prime factors of 13195 are 5, 7, 13 and 29.
+ * What is the largest prime factor of the number 600851475143 ?
+ */
+fun q3(num: Long = 600_851_475_143L){
+    var isPrime = true
+    val primeFactors = mutableListOf<Long>()
+    for(i in 2..sqrt(num.toDouble()).toInt()){
+        if((num % i) == 0L) {
+            for(j in primeFactors){
+                if(i % j == 0L) isPrime = false
+            }
+            if(isPrime) primeFactors.add(i.toLong())
+            isPrime = true
+        }
+    }
+    println("A3: ${primeFactors.last()}")
 }

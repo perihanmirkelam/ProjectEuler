@@ -90,7 +90,7 @@ fun q4() {
             sup = if(product > sup) product else sup
         }
     }
-    println("Supremum: $sup")
+    println("A4: $sup")
 }
 
 /**
@@ -122,12 +122,8 @@ fun q7(){
     var num = 1
     while(primeCount <= 10001){
         num++
-        for(i in 2 until num){
-            if(num % i == 0) isPrime = false
-        }
-        if (isPrime) {
-            primeCount++
-        }
+        for(i in 2 until num) if(num % i == 0) isPrime = false
+        if (isPrime) primeCount++
         isPrime = true
     }
     println("A7: $num")

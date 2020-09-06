@@ -5,6 +5,8 @@ fun main(args: Array<String>) {
     q2()
     q3()
     q4()
+    q6()
+    q7()
 }
 
 /**
@@ -92,7 +94,7 @@ fun q4() {
 }
 
 /**
- *Q6-Sum square difference
+ * Q6-Sum square difference
  * The sum of the squares of the first ten natural numbers is 385
  * The square of the sum of the first ten natural numbers is 3025
  * Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 2640
@@ -105,6 +107,28 @@ fun q6(){
         num1 += (it+1)*(it+1)
         num2 += (it+1)
     }
-    num2 = num2 * num2
+    num2 *= num2
     println("A6: ${num2 - num1}")
+}
+
+/**
+ * Q7-10001st prime
+ * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+ * What is the 10001st prime number?
+ */
+fun q7(){
+    var primeCount = 1
+    var isPrime = true
+    var num = 1
+    while(primeCount <= 10001){
+        num++
+        for(i in 2 until num){
+            if(num % i == 0) isPrime = false
+        }
+        if (isPrime) {
+            primeCount++
+        }
+        isPrime = true
+    }
+    println("A7: $num")
 }

@@ -5,6 +5,7 @@ fun main(args: Array<String>) {
     q2()
     q3()
     q4()
+    q5()
     q6()
     q7()
 }
@@ -91,6 +92,25 @@ fun q4() {
         }
     }
     println("A4: $sup")
+}
+
+/**
+ * Q5-Smallest Multiple
+ * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+ * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+ */
+fun q5() {
+    var num = 10
+    var isDivisible = false
+    while(true){
+        num++
+        repeat(20){
+            if(num % (it+1) != 0) isDivisible = false
+        }
+        if (isDivisible) break
+        isDivisible = true
+    }
+    println("A5: $num")
 }
 
 /**

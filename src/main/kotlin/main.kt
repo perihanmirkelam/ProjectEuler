@@ -10,6 +10,7 @@ fun main(args: Array<String>) {
     q7()
     q8()
     q9()
+    q10()
 }
 
 /**
@@ -214,4 +215,21 @@ fun q9(){
             if((b*b) + (c*c) == (a*a)) println("A9: ${a*b*c}")
         }
     }
+}
+
+/**
+ * Q10-Summation of primes
+ * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+ * Find the sum of all the primes below two million.
+ */
+fun q10(){
+    val num = 2_000_000
+    var sum = 0L
+    var isPrime = true
+    for(i in 2 until num){
+        for(j in 2 until sqrt(i.toDouble()).toInt() + 1) if(i % j == 0) isPrime = false
+        if(isPrime) sum += i
+        isPrime = true
+    }
+    println(sum)
 }

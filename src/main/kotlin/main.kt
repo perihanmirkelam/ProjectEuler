@@ -57,7 +57,7 @@ fun q2(limit: Int = 4_000_000) {
 fun q3(num: Long = 600_851_475_143L) {
     var isPrime = true
     val primeFactors = mutableListOf<Long>()
-    for (i in 2..sqrt(num.toDouble()).toInt()) {
+    for (i in 2..sqrt(num.toDouble()).toInt() + 1) {
         if ((num % i) == 0L) {
             for (j in primeFactors) {
                 if (i % j == 0L) isPrime = false
@@ -79,9 +79,10 @@ fun q3(num: Long = 600_851_475_143L) {
 fun q4() {
     var product: Int
     var sup = 0
-    var lb: Int; var ub: Int
+    var lb: Int;
+    var ub: Int
     for (f1 in 999 downTo 99) {
-        f2@for (f2 in 999 downTo 99) {
+        f2@ for (f2 in 999 downTo 99) {
             product = f1 * f2
             ub = product.toString().length - 1
             lb = 0
@@ -91,7 +92,7 @@ fun q4() {
                     lb++
                 } else continue@f2
             }
-            sup = if(product > sup) product else sup
+            sup = if (product > sup) product else sup
         }
     }
     println("A4: $sup")
@@ -105,10 +106,10 @@ fun q4() {
 fun q5() {
     var num = 10
     var isDivisible = false
-    while(true){
+    while (true) {
         num++
-        repeat(20){
-            if(num % (it+1) != 0) isDivisible = false
+        repeat(20) {
+            if (num % (it + 1) != 0) isDivisible = false
         }
         if (isDivisible) break
         isDivisible = true
@@ -123,12 +124,12 @@ fun q5() {
  * Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 2640
  * Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
  */
-fun q6(){
+fun q6() {
     var num1 = 0
     var num2 = 0
-    repeat(100){
-        num1 += (it+1)*(it+1)
-        num2 += (it+1)
+    repeat(100) {
+        num1 += (it + 1) * (it + 1)
+        num2 += (it + 1)
     }
     num2 *= num2
     println("A6: ${num2 - num1}")
@@ -139,13 +140,13 @@ fun q6(){
  * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
  * What is the 10001st prime number?
  */
-fun q7(){
-    var primeCount = 1
+fun q7() {
+    var primeCount = 2 // 2 and 3
     var isPrime = true
-    var num = 1
-    while(primeCount <= 10001){
-        num++
-        for(i in 2 until num) if(num % i == 0) isPrime = false
+    var num = 3
+    while (primeCount < 10001) {
+        num += 2
+        for (i in 3..sqrt(num.toDouble()).toInt() + 1) if (num % i == 0) isPrime = false
         if (isPrime) primeCount++
         isPrime = true
     }
@@ -158,7 +159,7 @@ fun q7(){
  * Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
  * What is the value of this product?
  */
-fun q8(){
+fun q8() {
     val num = "73167176531330624919225119674426574742355349194934" +
             "96983520312774506326239578318016984801869478851843" +
             "85861560789112949495459501737958331952853208805511" +
@@ -183,9 +184,9 @@ fun q8(){
     var subString: String
     var product = 1L
     var sup = 0L
-    for(i in 0 until num.length - digits){
-        subString = num.substring(i,i+digits)
-        for (j in 0 until digits){
+    for (i in 0 until num.length - digits) {
+        subString = num.substring(i, i + digits)
+        for (j in 0 until digits) {
             product *= Character.getNumericValue(subString[j])
         }
         sup = maxOf(product, sup)
@@ -202,17 +203,19 @@ fun q8(){
  * There exists exactly one Pythagorean triplet for which a + b + c = 1000.
  * Find the product abc.
  */
-fun q9(){
+fun q9() {
     val sum = 1000
-    var a: Int; var b: Int; var c: Int
+    var a: Int;
+    var b: Int;
+    var c: Int
     var bPlusC: Int
-    for (i in sum/3..sum-2){ //triangle inequality
+    for (i in sum / 3..sum - 2) { //triangle inequality
         a = i
         bPlusC = sum - i
-        for(j in 1..bPlusC/2){
+        for (j in 1..bPlusC / 2) {
             b = j
-            c = bPlusC -b
-            if((b*b) + (c*c) == (a*a)) println("A9: ${a*b*c}")
+            c = bPlusC - b
+            if ((b * b) + (c * c) == (a * a)) println("A9: ${a * b * c}")
         }
     }
 }
@@ -222,14 +225,14 @@ fun q9(){
  * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
  * Find the sum of all the primes below two million.
  */
-fun q10(){
+fun q10() {
     val num = 2_000_000
-    var sum = 0L
+    var sum = 2L
     var isPrime = true
-    for(i in 2 until num){
-        for(j in 2 until sqrt(i.toDouble()).toInt() + 1) if(i % j == 0) isPrime = false
-        if(isPrime) sum += i
+    for (i in 3 until num step 2) {
+        for (j in 2..sqrt(i.toDouble()).toInt() + 1) if (i % j == 0) isPrime = false
+        if (isPrime) sum += i
         isPrime = true
     }
-    println(sum)
+    println("A10: $sum")
 }

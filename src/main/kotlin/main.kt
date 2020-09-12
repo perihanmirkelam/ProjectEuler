@@ -1,5 +1,5 @@
 import kotlin.math.sqrt
 
 fun main(args: Array<String>) {
-    q11()
+    q12()
 }

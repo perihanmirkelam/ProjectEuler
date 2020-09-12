@@ -1,3 +1,4 @@
+import java.math.BigInteger
 import kotlin.math.pow
 
 /**
@@ -206,13 +207,6 @@ fun q13() {
             "20849603980134001723930671666823555245252804609722" +
             "53503534226472524250874054075591789781264330331690"
 
-    var nums = str.chunked(50)
-    var sum = 0L
-    var pow = 1
-    for (i in 50 downTo 10 step 10) {
-        sum /= 10.0.pow(10.0).toLong() //remainder
-        for (num in nums) sum += num.substring(i - 10, i).toLong()
-        pow++
-    }
-    println("A13: ${sum / 10.0.pow(sum.toString().length - 10).toLong()}")
+    val sum = str.chunked(50).map{it.toBigInteger()}.reduce{ sum, it -> sum + it}
+    println("A13: ${sum.toString().substring(0,10)}")
 }

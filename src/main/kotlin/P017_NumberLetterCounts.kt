@@ -49,7 +49,7 @@ fun Int.getTensDigit(): String {
     return if (this.toString()[0] == '1') {
         this.getTeenDigit()
     } else {
-        this.getRegularTensDigit() + (this%10).getSingleDigit()
+        this.getRegularTensDigit() + (this % 10).getSingleDigit()
     }
 }
 
@@ -70,7 +70,7 @@ fun Int.getTeenDigit(): String {
 }
 
 fun Int.getRegularTensDigit(): String {
-    return when (this/10) {
+    return when (this / 10) {
         2 -> "twenty"
         3 -> "thirty"
         4 -> "forty"
@@ -84,7 +84,7 @@ fun Int.getRegularTensDigit(): String {
 }
 
 fun Int.getHundredsDigit(): String {
-    return this.getSingleDigit() + HUNDRED + AND + (this%100).getTensDigit()
+    return this.getSingleDigit() + HUNDRED + AND + (this % 100).getTensDigit()
 }
 
 fun Int.getThousandsDigit(): String {
